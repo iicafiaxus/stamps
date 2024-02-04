@@ -10,6 +10,7 @@ const App = function(props){
 	const [color, setColor] = React.useState("#0a0");
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
 	const [transparency, setTransparency] = React.useState("0");
+	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
 	const handleChangeText = (ev) => {
 		setText(ev.target.value);
@@ -33,6 +34,11 @@ const App = function(props){
 				<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
 				<h3>文字の色</h3>
 				<p><ColorSelector name="color" setColor={setColor} default="#0a0" /></p>
+				<h3>フォント</h3>
+				<p><Selector name="font-family" setValue={setFontFamily} default="BIZ UDPMincho" options={[
+					{ value: "BIZ UDPMincho", title: "明朝" },
+					{ value: "BIZ UDPGothic", title: "ゴシック" }
+				]} /></p>
 				<h3>背景</h3>
 				<p><Selector name="transparency" setValue={setTransparency} default="0" options={[
 					{ value: "0", title: "透明" },
@@ -46,7 +52,8 @@ const App = function(props){
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} color={color + "f"} backgroundColor={backgroundColor + transparency}
+					<Stamp text={text} fontFamily={fontFamily}
+						color={color + "f"} backgroundColor={backgroundColor + transparency}
 						downloading={isDownloading} setStamp={setStamp} />
 				</p>
 				{!!text.length && <React.Fragment>

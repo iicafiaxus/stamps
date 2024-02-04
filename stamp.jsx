@@ -1,5 +1,6 @@
 const Stamp = function(props){
 	const lines = props.text?.split(/\r?\n/g).filter(x => x.length) || [];
+	const fontFamily = props.fontFamily || "BIZ UDPMincho";
 	const canvasWidth = +props.width || 128;
 	const canvasHeight = +props.height || 128;
 	let canvasRef = React.useRef(null);
@@ -12,7 +13,7 @@ const Stamp = function(props){
 		ctx.fillStyle = props.backgroundColor;
 		ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 		ctx.fillStyle = props.color || "#000f";
-		ctx.font = ["bold", canvasHeight + "px", "BIZ UDPMincho"].join(" ");
+		ctx.font = ["bold", canvasHeight + "px", fontFamily].join(" ");
 	}
 	const putLetter = (letter, x, y, width, height) => {
 		const naturalWidth = calcWidth(letter);
