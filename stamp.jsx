@@ -83,13 +83,14 @@ const Stamp = function(props){
 		if(ctx){
 			init();
 			draw();
-			if(timer) window.clearTimeout(timer);
-			setTimer(window.setTimeout(() => setIsDone(true), 100));
+			if(props.downloading) downloadImage();
+			setIsDone(true);
 		}
 	})
 	React.useEffect(() => {
 		if(isDone){
-			if(props.downloading) downloadImage();
+			if(timer) window.clearTimeout(timer);
+			setTimer(window.setTimeout(() => { init(), draw(); }, 100));
 			if(props.setStamp) props.setStamp(makeImage());
 		}
 		setIsDone(false);
