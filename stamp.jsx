@@ -90,8 +90,10 @@ const Stamp = function(props){
 	React.useEffect(() => {
 		if(isDone){
 			if(timer) window.clearTimeout(timer);
-			setTimer(window.setTimeout(() => { init(), draw(); }, 100));
-			if(props.setStamp) props.setStamp(makeImage());
+			setTimer(window.setTimeout(() => {
+				init(), draw();
+				if(props.setStamp) props.setStamp(makeImage());
+			}, 100));
 		}
 		setIsDone(false);
 	}, [isDone])
