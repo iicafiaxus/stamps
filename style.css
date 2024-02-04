@@ -134,7 +134,7 @@ h3{
 }
 @media (max-width: 600px){
 	.main{
-		flex-direction: column-reverse;
+		flex-direction: column;
 	}
 }
 
