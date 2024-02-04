@@ -8,6 +8,8 @@ const Stamp = function(props){
 		ctx.textAlign = "left";
 		ctx.textBaseline = "top";
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+		ctx.fillStyle = props.backgroundColor;
+		ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 		ctx.fillStyle = props.color || "#000f";
 		ctx.font = ["bold", canvasHeight + "px", "BIZ UDPMincho"].join(" ");
 	}

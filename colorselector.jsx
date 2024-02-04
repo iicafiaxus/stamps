@@ -1,7 +1,9 @@
 "REQUIRE inlinecheckbox.jsx";
 
 const ColorSelector = function(props){
-	const [colorCode, setColorCode] = React.useState("#0a0f");
+	const name = props.name || "color";
+	const defaultColor = props.default || "#0a0f";
+	const [colorCode, setColorCode] = React.useState(defaultColor);
 	const colors = [
 		{ name: "黒", code: "#000f" },
 		{ name: "赤", code: "#f00f" },
@@ -13,13 +15,14 @@ const ColorSelector = function(props){
 		{ name: "ピンク", code: "#f6cf" },
 		{ name: "水色", code: "#6cff" },
 		{ name: "オレンジ", code: "#f90f" },
+		{ name: "透明", code: "#0000" },
 	]
 	React.useEffect(() => {
 		props.setColor(colorCode);
 	})
 	return <React.Fragment>
 		{colors.map(color => 
-			<InlineCheckBox name="color" key={color.code}
+			<InlineCheckBox name={name} key={color.code}
 			onChange={() => setColorCode(color.code)}
 			checked={colorCode == color.code}>
 				<span style={{color: color.code}}>■</span> {color.name}

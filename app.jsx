@@ -7,6 +7,7 @@ const App = function(props){
 	const [text, setText] = React.useState("");
 	const [isDownloading, setIsDownloading] = React.useState(false);
 	const [color, setColor] = React.useState("#000f");
+	const [backgroundColor, setBackgroundColor] = React.useState("#0000");
 	const [stamp, setStamp] = React.useState(<img />);
 	const handleChangeText = (ev) => {
 		setText(ev.target.value);
@@ -29,12 +30,15 @@ const App = function(props){
 				<h3>組版する文字列</h3>
 				<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
 				<h3>設定</h3>
-				<p><ColorSelector setColor={setColor} /></p>
+				<p><ColorSelector name="color" setColor={setColor} default="#0a0f" /></p>
+				<p><ColorSelector name="backgroundColor"
+					setColor={setBackgroundColor} default="#0000" /></p>
 			</div>
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} color={color} downloading={isDownloading} setStamp={setStamp} />
+					<Stamp text={text} color={color} backgroundColor={backgroundColor}
+						downloading={isDownloading} setStamp={setStamp} />
 				</p>
 				{!!text.length && <React.Fragment>
 					<p><button onClick={downloadStamp}>ダウンロード</button></p>
