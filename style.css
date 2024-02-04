@@ -34,8 +34,9 @@ p{
 	background: #ffff;
 	margin: 2px;
 	border-radius: 4px;
-	padding: 0 4px;
+	padding: 4px 4px;
 	min-width: 40px;
+	line-height: 24px;
 	cursor: pointer;
 }
 .checkbox-label-button:hover{
