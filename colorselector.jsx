@@ -5,7 +5,6 @@ const ColorSelector = function(props){
 	const defaultColor = props.default || "#0a0f";
 	const [colorCode, setColorCode] = React.useState(defaultColor);
 	const colors = [
-		{ name: "黒", code: "#000f" },
 		{ name: "赤", code: "#f00f" },
 		{ name: "青", code: "#36ff" },
 		{ name: "黄色", code: "#fc3f" },
@@ -17,6 +16,9 @@ const ColorSelector = function(props){
 		{ name: "オレンジ", code: "#f90f" },
 		{ name: "白", code: "#ffff" },
 		{ name: "うすい白", code: "#fff9" },
+		{ name: "グレー", code: "#888f" },
+		{ name: "うすいグレー", code: "#8889" },
+		{ name: "黒", code: "#000f" },
 		{ name: "うすい黒", code: "#0009" },
 		{ name: "透明", code: "#0000" },
 	]
