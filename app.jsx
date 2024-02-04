@@ -1,5 +1,6 @@
 "REQUIRE stamp.jsx";
 "REQUIRE colorselector.jsx";
+"REQUIRE stampsample.jsx";
 
 const App = function(props){
 	let textareaRef = React.useRef(null);
@@ -20,6 +21,7 @@ const App = function(props){
 	React.useEffect(() => {
 		textareaRef.current?.focus();
 	}, [text])
+	const stamp = <Stamp text={text} color={color} width={22} height={22} />;
 	return <div className="app">
 		<h1>激詰め組版</h1>
 		<div className="main">
@@ -35,20 +37,8 @@ const App = function(props){
 				<p><button onClick={downloadStamp}>ダウンロード</button></p>
 				<h3>サンプル</h3>
 				<div className="sample-list">
-					<div className="sample light">
-						<p>
-							これは本当に<Stamp text={text} color={color} width={24} height={24} />です
-							<br />
-							<span className="stamp"><Stamp text={text} color={color} width={24} height={24} /> 1</span>
-						</p>
-					</div>
-					<div className="sample dark">
-						<p>
-							これは本当に<Stamp text={text} color={color} width={24} height={24} />です
-							<br />
-							<span className="stamp"><Stamp text={text} color={color} width={24} height={24} /> 1</span>
-						</p>
-					</div>
+					<StampSample theme="light" stamp={stamp} />
+					<StampSample theme="dark" stamp={stamp} />
 				</div>
 			</div>
 		</div>

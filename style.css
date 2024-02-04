@@ -54,14 +54,36 @@ p{
 	margin: 8px;
 	border: 1px solid #888;
 }
+
 .sample.light{
-	background: #ffff;
-	color: #333f;
+	background: rgb(255, 255, 255);
+	color: rgb(29, 28, 29);
 }
+.sample.light:hover{
+	background: rgb(248, 248, 248);
+}
+.sample.light .stamp{
+	background: rgba(29, 28, 29, 0.04);
+}
+.sample.light .stamp.selected{
+	background: rgba(29, 155, 209, 0.1);
+}
+
 .sample.dark{
-	background: #333f;
-	color: #ffff;
+	background: rgb(0, 0, 0);
+	color: rgb(209, 210, 211);
 }
+.sample.dark:hover{
+	background: rgb(26, 29, 33);
+}
+.sample.dark .stamp{
+	background: rgba(232, 232, 232, 0.04);
+}
+.sample.dark .stamp.selected{
+	background: rgb(18, 100, 163);
+}
+
+
 .sample canvas{
 	vertical-align: text-top;
 	border: 0px none;
@@ -69,14 +91,12 @@ p{
 }
 .sample .stamp{
 	display: inline-block;
-	color: #39ff;
-	background: #39f6;
-	border: 2px solid #39f9;
 	border-radius: 16px;
 	height: 24px;
 	vertical-align: middle;
 	margin: 0;
 	padding: 2px 12px;
+	cursor: pointer;
 }
 .sample p{
 	margin: 0;
