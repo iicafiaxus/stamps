@@ -19,7 +19,7 @@ const App = function(props){
 	})
 	React.useEffect(() => {
 		textareaRef.current?.focus();
-	})
+	}, [text])
 	return <div className="app">
 		<h1>激詰め組版</h1>
 		<div className="main">
