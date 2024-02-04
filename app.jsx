@@ -36,12 +36,14 @@ const App = function(props){
 				<p>
 					<Stamp text={text} color={color} downloading={isDownloading} setStamp={setStamp} />
 				</p>
-				<p><button onClick={downloadStamp}>ダウンロード</button></p>
-				<h3>サンプル</h3>
-				<div className="sample-list">
-					<StampSample theme="light" stamp={stamp} />
-					<StampSample theme="dark" stamp={stamp} />
-				</div>
+				{!!text.length && <React.Fragment>
+					<p><button onClick={downloadStamp}>ダウンロード</button></p>
+					<h3>サンプル</h3>
+					<div className="sample-list">
+						<StampSample theme="light" stamp={stamp} />
+						<StampSample theme="dark" stamp={stamp} />
+					</div>
+				</React.Fragment>}
 			</div>
 		</div>
 	</div>
