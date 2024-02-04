@@ -15,6 +15,9 @@ const ColorSelector = function(props){
 		{ name: "ピンク", code: "#f6cf" },
 		{ name: "水色", code: "#6cff" },
 		{ name: "オレンジ", code: "#f90f" },
+		{ name: "白", code: "#ffff" },
+		{ name: "うすい白", code: "#fff9" },
+		{ name: "うすい黒", code: "#0009" },
 		{ name: "透明", code: "#0000" },
 	]
 	React.useEffect(() => {
