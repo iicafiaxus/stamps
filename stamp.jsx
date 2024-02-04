@@ -4,6 +4,7 @@ const Stamp = function(props){
 	const canvasHeight = +props.height || 128;
 	let canvasRef = React.useRef(null);
 	const [ctx, setCtx] = React.useState(null);
+	const [isDone, setIsDone] = React.useState(false);
 	const init = () => {
 		ctx.textAlign = "left";
 		ctx.textBaseline = "top";
@@ -80,9 +81,13 @@ const Stamp = function(props){
 		if(ctx){
 			init(), draw();
 			if(props.downloading) downloadImage();
-			if(props.setStamp) props.setStamp(makeImage());
+			setIsDone(true);
 		}
 	})
+	React.useEffect(() => {
+		if(isDone && props.setStamp) props.setStamp(makeImage());
+		setIsDone(false);
+	}, [isDone])
 	return <canvas width={`${canvasWidth}px`} height={`${canvasHeight}px`} ref={canvasRef} />
 }
 
