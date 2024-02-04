@@ -6,6 +6,7 @@ const Stamp = function(props){
 	let canvasRef = React.useRef(null);
 	const [ctx, setCtx] = React.useState(null);
 	const [isDone, setIsDone] = React.useState(false);
+	const [timer, setTimer] = React.useState(null);
 	const init = () => {
 		ctx.textAlign = "left";
 		ctx.textBaseline = "top";
@@ -80,13 +81,17 @@ const Stamp = function(props){
 	})
 	React.useEffect(() => {
 		if(ctx){
-			init(), draw();
-			if(props.downloading) downloadImage();
-			setIsDone(true);
+			init();
+			draw();
+			if(timer) window.clearTimeout(timer);
+			setTimer(window.setTimeout(() => setIsDone(true), 100));
 		}
 	})
 	React.useEffect(() => {
-		if(isDone && props.setStamp) props.setStamp(makeImage());
+		if(isDone){
+			if(props.downloading) downloadImage();
+			if(props.setStamp) props.setStamp(makeImage());
+		}
 		setIsDone(false);
 	}, [isDone])
 	return <canvas width={`${canvasWidth}px`} height={`${canvasHeight}px`} ref={canvasRef} />
