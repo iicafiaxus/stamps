@@ -1,8 +1,8 @@
 {
     "lang": "ja",
-    "name": "スタンプ組み",
-    "short_name": "スタンプ",
-    "description": "スタンプを作りましょう。",
+    "name": "激詰め組版",
+    "short_name": "激詰め",
+    "description": "Slackなどで使う激詰めスタンプを作りましょう。",
     "scope": "./",
     "start_url": "./",
     "icons": [
