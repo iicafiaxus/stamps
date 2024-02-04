@@ -108,7 +108,6 @@ p{
 	flex-direction: row;
 	justify-content: flex-end;
 	width: fit-content;
-	margin:auto;
 }
 
 .source, .result{
