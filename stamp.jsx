@@ -66,11 +66,20 @@ const Stamp = function(props){
 			URL.revokeObjectURL(url);
 		})
 	}
+	const makeImage = () => {
+		if(!canvasRef.current) return;
+		const data = canvasRef.current.toDataURL();
+		return <img src={data} width="22" height="22" />;
+	}
 	React.useEffect(() => {
 		if(!ctx) setCtx(canvasRef.current?.getContext("2d"));
 	})
 	React.useEffect(() => {
-		if(ctx) init(), draw(), props.downloading && downloadImage();
+		if(ctx){
+			init(), draw();
+			if(props.downloading) downloadImage();
+			if(props.setStamp) props.setStamp(makeImage());
+		}
 	})
 	return <canvas width={`${canvasWidth}px`} height={`${canvasHeight}px`} ref={canvasRef} />
 }

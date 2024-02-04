@@ -7,6 +7,7 @@ const App = function(props){
 	const [text, setText] = React.useState("");
 	const [isDownloading, setIsDownloading] = React.useState(false);
 	const [color, setColor] = React.useState("#000f");
+	const [stamp, setStamp] = React.useState(<img />);
 	const handleChangeText = (ev) => {
 		setText(ev.target.value);
 	}
@@ -21,7 +22,6 @@ const App = function(props){
 	React.useEffect(() => {
 		textareaRef.current?.focus();
 	}, [text])
-	const stamp = <Stamp text={text} color={color} width={22} height={22} />;
 	return <div className="app">
 		<h1>激詰め組版</h1>
 		<div className="main">
@@ -33,7 +33,9 @@ const App = function(props){
 			</div>
 			<div className="result">
 				<h3>結果</h3>
-				<p><Stamp text={text} color={color} downloading={isDownloading} /></p>
+				<p>
+					<Stamp text={text} color={color} downloading={isDownloading} setStamp={setStamp} />
+				</p>
 				<p><button onClick={downloadStamp}>ダウンロード</button></p>
 				<h3>サンプル</h3>
 				<div className="sample-list">
