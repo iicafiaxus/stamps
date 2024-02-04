@@ -10,6 +10,7 @@ const App = function(props){
 	const [color, setColor] = React.useState("#0a0");
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
 	const [transparency, setTransparency] = React.useState("0");
+	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
 	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
 	const handleChangeText = (ev) => {
@@ -48,6 +49,11 @@ const App = function(props){
 				{transparency != "0" && <p>
 					<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
 				</p>}
+				<h3>詰め方</h3>
+				<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default="normal" options={[
+					{ value: "normal", title: "普通" },
+					{ value: "hard", title: "激詰め(未実装)", enabled: false },
+				]} /></p>
 			</div>
 			<div className="result">
 				<h3>結果</h3>

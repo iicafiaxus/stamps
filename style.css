@@ -42,12 +42,18 @@ p{
 	cursor: pointer;
 }
 .checkbox-label-button:hover{
-	border: 2px solid #0009;
 	background: #ffff;
 }
 :checked + .checkbox-label-button{
 	border: 2px solid #0001;
 	background: #eeef;
+}
+.checkbox-label-button:hover{
+	border: 2px solid #0009;
+}
+.checkbox-label-button.disabled{
+	border: 2px solid #0001;
+	color: #0006;
 }
 .sample{
 	font-size: 16px;

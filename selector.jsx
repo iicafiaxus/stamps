@@ -12,7 +12,9 @@ const Selector = function(props){
 		{options.map(option =>
 			<InlineCheckBox name={name} key={option.value}
 			onChange={() => setValue(option.value)}
-			checked={value == option.value}>
+			checked={value == option.value}
+			enabled={option.enabled ?? true}
+			>
 				{option.title}
 			</InlineCheckBox>
 		)}
