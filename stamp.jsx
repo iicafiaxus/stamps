@@ -92,8 +92,8 @@ const Stamp = function(props){
 			if(timer) window.clearTimeout(timer);
 			setTimer(window.setTimeout(() => {
 				init(), draw();
-				if(props.setStamp) props.setStamp(makeImage());
 			}, 100));
+			if(props.setStamp) props.setStamp(makeImage());
 		}
 		setIsDone(false);
 	}, [isDone])
