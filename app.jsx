@@ -1,13 +1,15 @@
 "REQUIRE stamp.jsx";
 "REQUIRE colorselector.jsx";
 "REQUIRE stampsample.jsx";
+"REQUIRE selector.jsx";
 
 const App = function(props){
 	let textareaRef = React.useRef(null);
 	const [text, setText] = React.useState("");
 	const [isDownloading, setIsDownloading] = React.useState(false);
-	const [color, setColor] = React.useState("#000f");
-	const [backgroundColor, setBackgroundColor] = React.useState("#0000");
+	const [color, setColor] = React.useState("#0a0");
+	const [backgroundColor, setBackgroundColor] = React.useState("#000");
+	const [transparency, setTransparency] = React.useState("0");
 	const [stamp, setStamp] = React.useState(<img />);
 	const handleChangeText = (ev) => {
 		setText(ev.target.value);
@@ -30,15 +32,21 @@ const App = function(props){
 				<h3>組版する文字列</h3>
 				<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
 				<h3>文字の色</h3>
-				<p><ColorSelector name="color" setColor={setColor} default="#0a0f" /></p>
+				<p><ColorSelector name="color" setColor={setColor} default="#0a0" /></p>
 				<h3>背景</h3>
-				<p><ColorSelector name="backgroundColor"
-					setColor={setBackgroundColor} default="#0000" /></p>
+				<p><Selector name="transparency" setValue={setTransparency} default="0" options={[
+					{ value: "0", title: "透明" },
+					{ value: "8", title: "半透明" },
+					{ value: "f", title: "不透明" }
+				]} /></p>
+				{transparency != "0" && <p>
+					<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
+				</p>}
 			</div>
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} color={color} backgroundColor={backgroundColor}
+					<Stamp text={text} color={color + "f"} backgroundColor={backgroundColor + transparency}
 						downloading={isDownloading} setStamp={setStamp} />
 				</p>
 				{!!text.length && <React.Fragment>
