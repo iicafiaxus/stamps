@@ -29,8 +29,9 @@ const App = function(props){
 			<div className="source">
 				<h3>組版する文字列</h3>
 				<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
-				<h3>設定</h3>
+				<h3>文字の色</h3>
 				<p><ColorSelector name="color" setColor={setColor} default="#0a0f" /></p>
+				<h3>背景</h3>
 				<p><ColorSelector name="backgroundColor"
 					setColor={setBackgroundColor} default="#0000" /></p>
 			</div>
