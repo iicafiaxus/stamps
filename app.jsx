@@ -2,6 +2,7 @@
 "REQUIRE colorselector.jsx";
 "REQUIRE stampsample.jsx";
 "REQUIRE selector.jsx";
+"REQUIRE checker.jsx";
 
 const App = function(props){
 	let textareaRef = React.useRef(null);
@@ -10,6 +11,7 @@ const App = function(props){
 	const [color, setColor] = React.useState("#0a0");
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
 	const [transparency, setTransparency] = React.useState("0");
+	const [hasPadding, setHasPadding] = React.useState(false);
 	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
 	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
@@ -45,7 +47,7 @@ const App = function(props){
 					{ value: "0", title: "透明" },
 					{ value: "8", title: "半透明" },
 					{ value: "f", title: "不透明" }
-				]} /></p>
+				]} /> | <Checker setValue={setHasPadding} default={false} title="余白" /></p>
 				{transparency != "0" && <p>
 					<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
 				</p>}
@@ -58,7 +60,7 @@ const App = function(props){
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} fontFamily={fontFamily}
+					<Stamp text={text} fontFamily={fontFamily} padding={hasPadding ? 12 : 0}
 						color={color + "f"} backgroundColor={backgroundColor + transparency}
 						downloading={isDownloading} setStamp={setStamp} />
 				</p>
