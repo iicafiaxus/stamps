@@ -54,13 +54,15 @@ const App = function(props){
 				<h3>詰め方</h3>
 				<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default="normal" options={[
 					{ value: "normal", title: "普通" },
+					{ value: "proportional", title: "比率固定" },
 					{ value: "hard", title: "激詰め(未実装)", enabled: false },
 				]} /></p>
 			</div>
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} fontFamily={fontFamily} padding={hasPadding ? 12 : 0}
+					<Stamp text={text} fontFamily={fontFamily} policy={spacingPolicy}
+						width={128} height={128} padding={hasPadding ? 12 : 0}
 						color={color + "f"} backgroundColor={backgroundColor + transparency}
 						downloading={isDownloading} setStamp={setStamp} />
 				</p>

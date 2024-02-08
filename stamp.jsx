@@ -1,6 +1,7 @@
 const Stamp = function(props){
 	const lines = props.text?.split(/\r?\n/g).filter(x => x.length) || [];
 	const fontFamily = props.fontFamily || "BIZ UDPMincho";
+	const policy = props.policy || "normal";
 	const canvasWidth = +props.width || 128;
 	const canvasHeight = +props.height || 128;
 	const padding = +props.padding || 0;
@@ -38,7 +39,8 @@ const Stamp = function(props){
 		return canvasHeight * ratio;
 	}
 
-	const sum = array => array.reduce((a, b) => a + b, 0);
+	const sum = array => array.length ? array.reduce((a, b) => a + b, 0) : 0;
+	const min = array => array.length ? array.reduce((a, b) => Math.min(a, b), array[0]) : Infty;
 	const mid = (a0, b0, f) => { // assert a < b, f(a), !f(b); find min x s.t. !f(x)
 		let a = a0, b = b0;
 		let m = (a + b) / 2;
@@ -55,19 +57,21 @@ const Stamp = function(props){
 		const naturalHeights = lines.map(line => calcHeight(line));
 		const higherAverageHeight = mid(0, innerHeight, x => sum(naturalHeights.map(h => fitHeight(h, x))) < innerHeight);
 		const lineHeights = naturalHeights.map(h => fitHeight(h, higherAverageHeight));
+		const minProportion = min(lines.map((line, i) => naturalHeights[i] / lineHeights[i]));
 		const totalHeight = sum(lineHeights);
 		const excessHeight = innerHeight - totalHeight;
 		let top = padding + excessHeight / (lines.length + 1);
 		for(let i = 0; i < lines.length; i ++){
-			drawLine(lines[i], top, lineHeights[i]);
+			if(policy == "proportional") drawLine(lines[i], top, lineHeights[i], minProportion);
+			else drawLine(lines[i], top, lineHeights[i]);
 			top += lineHeights[i] + excessHeight / (lines.length + 1);
 		}
 	}
-	const drawLine = (letters, lineTop, lineHeight) => {
+	const drawLine = (letters, lineTop, lineHeight, proportion) => {
 		if(!letters?.length) return;
 		const heightRatio = lineHeight / canvasHeight;
 		const naturalWidth = calcWidth(letters);
-		const widthRatio = Math.min(heightRatio * 2.5, innerWidth / naturalWidth);
+		const widthRatio = proportion ? heightRatio * proportion : Math.min(heightRatio * 2.5, innerWidth / naturalWidth);
 		const left = padding + (innerWidth - naturalWidth * widthRatio) / 2;
 		for(let i = 0; i < letters.length; i ++){
 			const naturalLetterWidth = calcWidth(letters[i]);
