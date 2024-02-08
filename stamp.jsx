@@ -37,17 +37,30 @@ const Stamp = function(props){
 		const ratio = Math.min(1.0, innerWidth / naturalWidth);
 		return canvasHeight * ratio;
 	}
+
+	const sum = array => array.reduce((a, b) => a + b, 0);
+	const mid = (a0, b0, f) => { // assert a < b, f(a), !f(b); find min x s.t. !f(x)
+		let a = a0, b = b0;
+		let m = (a + b) / 2;
+		while(b - a > 0.1) m = (a + b) / 2, f(m) ? (a = m): (b = m);
+		return b;
+	};
+
+	const fitHeight = (height, targetHeight) => {
+		if(height * 2.5 < targetHeight) return height * 2.5;
+		else return targetHeight;
+	}
 	const draw = () => {
 		if(!lines.length) return;
-		const averageHeight = innerHeight / lines.length;
-		const lineHeights = lines.map(line => Math.min(Math.max(averageHeight, calcHeight(line) * 0.4), calcHeight(line) * 2.5));
-		let totalHeight = lineHeights.reduce((a, b) => a + b, 0);
-		const heightRatio = Math.min(1.0, canvasHeight / totalHeight);
-		const excessHeight = innerHeight - totalHeight * heightRatio;
+		const naturalHeights = lines.map(line => calcHeight(line));
+		const higherAverageHeight = mid(0, innerHeight, x => sum(naturalHeights.map(h => fitHeight(h, x))) < innerHeight);
+		const lineHeights = naturalHeights.map(h => fitHeight(h, higherAverageHeight));
+		const totalHeight = sum(lineHeights);
+		const excessHeight = innerHeight - totalHeight;
 		let top = padding + excessHeight / (lines.length + 1);
 		for(let i = 0; i < lines.length; i ++){
-			drawLine(lines[i], top, lineHeights[i] * heightRatio);
-			top += lineHeights[i] * heightRatio + excessHeight / (lines.length + 1);
+			drawLine(lines[i], top, lineHeights[i]);
+			top += lineHeights[i] + excessHeight / (lines.length + 1);
 		}
 	}
 	const drawLine = (letters, lineTop, lineHeight) => {
