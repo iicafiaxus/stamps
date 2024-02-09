@@ -126,10 +126,16 @@ p{
 }
 
 .source, .result{
-	width: calc(100% - 32px);
 	margin: 8px;
 	padding: 16px 8px;
 }
+.source{
+	width: 420px;
+}
+.result{
+	width: calc(100% - 64px - 420px);
+}
+
 
 .result{
 	display: flex;
@@ -189,6 +195,9 @@ h3{
 @media (max-width: 600px){
 	.main{
 		flex-direction: column;
+	}
+	.source, .result{
+		width: calc(100% - 32px);
 	}
 }
 
