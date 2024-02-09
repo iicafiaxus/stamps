@@ -163,8 +163,10 @@ h3{
 	clear: both;
 	line-height: 36px;
 	position: relative;
-	background: #fff;
 	padding: 0 4px;
+}
+.source h3{
+	background: #fff;
 }
 .source p{
 	margin: 0 0 0 8px;
