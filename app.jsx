@@ -58,7 +58,7 @@ const App = function(props){
 				</div>
 				<div className="config-item">
 					<h3>余白</h3>
-					<p><Selector name="padding-style" setValue={setPaddingStyle} default="normal" options={[
+					<p><Selector name="padding-style" setValue={setPaddingStyle} default="none" options={[
 						{ value: "none", title: "なし" },
 						{ value: "normal", title: "四角" },
 						{ value: "round", title: "角丸" }
@@ -66,7 +66,7 @@ const App = function(props){
 				</div>
 				<div className="config-item">
 					<h3>改行調整</h3>
-					<p><Selector name="compression-limit" setValue={setCompressionLimit} default={2.0} options={[
+					<p><Selector name="compression-limit" setValue={setCompressionLimit} default={1.25} options={[
 						{ value: 1.0, title: "しない" },
 						{ value: 1.25, title: "弱" },
 						{ value: 2.0, title: "中" },
