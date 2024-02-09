@@ -13,6 +13,7 @@ const App = function(props){
 	const [transparency, setTransparency] = React.useState("0");
 	const [hasPadding, setHasPadding] = React.useState(false);
 	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
+	const [compressionLimit, setCompressionLimit] = React.useState(2.5);
 	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
 	const handleChangeText = (ev) => {
@@ -51,6 +52,14 @@ const App = function(props){
 				{transparency != "0" && <p>
 					<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
 				</p>}
+				<h3>改行フィット</h3>
+				<p><Selector name="compression-limitl" setValue={setCompressionLimit} default={2.0} options={[
+					{ value: 1.0, title: "しない" },
+					{ value: 1.25, title: "弱" },
+					{ value: 2.0, title: "中" },
+					{ value: 3.0, title: "強" },
+					{ value: 10.0, title: "最強" },
+				]} /></p>
 				<h3>詰め方</h3>
 				<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default="normal" options={[
 					{ value: "normal", title: "普通" },
@@ -61,7 +70,7 @@ const App = function(props){
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} fontFamily={fontFamily} policy={spacingPolicy}
+					<Stamp text={text} fontFamily={fontFamily} policy={spacingPolicy} compressionLimit={compressionLimit}
 						width={128} height={128} padding={hasPadding ? 12 : 0}
 						color={color + "f"} backgroundColor={backgroundColor + transparency}
 						downloading={isDownloading} setStamp={setStamp} />
