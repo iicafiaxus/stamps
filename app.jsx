@@ -11,7 +11,7 @@ const App = function(props){
 	const [color, setColor] = React.useState("#0a0");
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
 	const [transparency, setTransparency] = React.useState("0");
-	const [hasPadding, setHasPadding] = React.useState(false);
+	const [paddingStyle, setPaddingStyle] = React.useState("none");
 	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
 	const [compressionLimit, setCompressionLimit] = React.useState(2.5);
 	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
@@ -48,12 +48,18 @@ const App = function(props){
 					{ value: "0", title: "透明" },
 					{ value: "8", title: "半透明" },
 					{ value: "f", title: "不透明" }
-				]} /> | <Checker setValue={setHasPadding} default={false} title="余白" /></p>
+				]} /></p>
 				{transparency != "0" && <p>
 					<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
 				</p>}
+				<h3>余白</h3>
+				<p><Selector name="padding-style" setValue={setPaddingStyle} default="normal" options={[
+					{ value: "none", title: "なし" },
+					{ value: "normal", title: "四角" },
+					{ value: "round", title: "角丸" }
+				]} /></p>
 				<h3>改行調整</h3>
-				<p><Selector name="compression-limitl" setValue={setCompressionLimit} default={2.0} options={[
+				<p><Selector name="compression-limit" setValue={setCompressionLimit} default={2.0} options={[
 					{ value: 1.0, title: "しない" },
 					{ value: 1.25, title: "弱" },
 					{ value: 2.0, title: "中" },
@@ -71,7 +77,7 @@ const App = function(props){
 				<h3>結果</h3>
 				<p>
 					<Stamp text={text} fontFamily={fontFamily} policy={spacingPolicy} compressionLimit={compressionLimit}
-						width={128} height={128} padding={hasPadding ? 12 : 0}
+						width={128} height={128} padding={paddingStyle != "none" ? 12 : 0} paddingStyle={paddingStyle}
 						color={color + "f"} backgroundColor={backgroundColor + transparency}
 						downloading={isDownloading} setStamp={setStamp} />
 				</p>

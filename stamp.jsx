@@ -6,6 +6,7 @@ const Stamp = function(props){
 	const canvasWidth = +props.width || 128;
 	const canvasHeight = +props.height || 128;
 	const padding = +props.padding || 0;
+	const paddingStyle = props.paddingStyle || "square";
 	const innerWidth = canvasWidth - padding * 2;
 	const innerHeight = canvasHeight - padding * 2;
 
@@ -18,7 +19,22 @@ const Stamp = function(props){
 		ctx.textBaseline = "top";
 		ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 		ctx.fillStyle = props.backgroundColor;
-		ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+		if(paddingStyle == "round"){
+			const radius = padding * 2;
+			ctx.beginPath();
+			ctx.arc(radius, radius, radius, Math.PI, Math.PI * 1.5);
+			ctx.lineTo(canvasWidth - radius, 0);
+			ctx.arc(canvasWidth - radius, radius, radius, Math.PI * 1.5, Math.PI * 2);
+			ctx.lineTo(canvasWidth, canvasHeight - radius);
+			ctx.arc(canvasWidth - radius, canvasHeight - radius, radius, 0, Math.PI * 0.5);
+			ctx.lineTo(radius, canvasHeight);
+			ctx.arc(radius, canvasHeight - radius, radius, Math.PI * 0.5, Math.PI);
+			ctx.lineTo(0, radius);
+			ctx.fill();
+		}
+		else{
+			ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+		}
 		ctx.fillStyle = props.color || "#000f";
 		ctx.font = ["bold", canvasHeight + "px", fontFamily].join(" ");
 	}
