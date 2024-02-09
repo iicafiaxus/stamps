@@ -52,7 +52,7 @@ const App = function(props){
 				{transparency != "0" && <p>
 					<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
 				</p>}
-				<h3>改行フィット</h3>
+				<h3>改行調整</h3>
 				<p><Selector name="compression-limitl" setValue={setCompressionLimit} default={2.0} options={[
 					{ value: 1.0, title: "しない" },
 					{ value: 1.25, title: "弱" },
