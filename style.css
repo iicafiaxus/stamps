@@ -138,7 +138,18 @@ p{
 }
 
 h3{
-	margin: 0 16px 16px;
+	margin: 2px 8px;
+	float: left;
+	clear: both;
+	line-height: 36px;
+}
+.source p{
+	margin: 0px 8px 16px;
+	float: right;
+	text-align: right;
+}
+.source p span{
+	text-align: center;
 }
 
 .main{
