@@ -54,9 +54,7 @@ const App = function(props){
 						{ value: "8", title: "半透明" },
 						{ value: "f", title: "不透明" }
 					]} /></p>
-					{transparency != "0" && <p>
-						<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" />
-					</p>}
+					<p><ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" /></p>
 				</div>
 				<div className="config-item">
 					<h3>余白</h3>
