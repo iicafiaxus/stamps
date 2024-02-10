@@ -5,11 +5,8 @@ const Checker = function(props){
 	const enabled = props.enabled ?? true;
 	const defaultValue = !!props.default;
 	const [value, setValue] = React.useState(defaultValue);
-	React.useEffect(() => {
-		props.setValue(value);
-	})
 	return <InlineCheckBox
-		onChange={(ev) => setValue(ev.target.checked)}
+		onChange={(ev) => setValue(ev.target.checked) + props.setValue(ev.target.checked)}
 		checked={value}
 		enabled={enabled}
 		>

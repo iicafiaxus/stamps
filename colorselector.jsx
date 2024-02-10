@@ -19,13 +19,10 @@ const ColorSelector = function(props){
 		{ name: "グレー", code: "#888" },
 		{ name: "黒", code: "#000" },
 	]
-	React.useEffect(() => {
-		props.setColor(colorCode);
-	})
 	return <React.Fragment>
 		{colors.map(color => 
 			<InlineCheckBox name={name} key={color.code}
-			onChange={() => setColorCode(color.code)}
+			onChange={() => setColorCode(color.code) + props.setColor(color.code)}
 			checked={colorCode == color.code}>
 				<span style={{color: color.code}}>■</span> {color.name}
 			</InlineCheckBox>
