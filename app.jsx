@@ -118,15 +118,13 @@ const App = function(props){
 						downloading={isDownloading} setStamp={setStamp}
 						time={time} />
 				</p>
-				{!!text.length && <React.Fragment>
-					<p><button onClick={downloadStamp}>ダウンロード</button></p>
-					<h3>サンプル</h3>
-					<div className="sample-list">
-						<StampSample theme="light" stamp={stamp} />
-						<StampSample theme="dark" stamp={stamp} />
-					</div>
-					<p><button onClick={() => setTime(time + 1)}>表示更新 (更新されない場合)</button></p>
-				</React.Fragment>}
+				<p><button onClick={downloadStamp}>ダウンロード</button></p>
+				<h3>サンプル</h3>
+				<div className="sample-list">
+					<StampSample theme="light" stamp={stamp} />
+					<StampSample theme="dark" stamp={stamp} />
+				</div>
+				<p><button onClick={() => setTime(time + 1)}>表示更新 (更新されない場合)</button></p>
 			</div>
 		</div>
 	</div>
