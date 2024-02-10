@@ -18,6 +18,7 @@ const App = function(props){
 	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
 	const [showsConfig, setShowsConfig] = React.useState(false);
+	const [time, setTime] = React.useState(0);
 
 	const handleChangeText = (ev) => {
 		setText(ev.target.value);
@@ -113,7 +114,8 @@ const App = function(props){
 						kerningRatio={kerningRatio}
 						width={128} height={128} padding={paddingStyle != "none" ? 12 : 0} paddingStyle={paddingStyle}
 						color={color + "f"} backgroundColor={backgroundColor + transparency}
-						downloading={isDownloading} setStamp={setStamp} />
+						downloading={isDownloading} setStamp={setStamp}
+						time={time} />
 				</p>
 				{!!text.length && <React.Fragment>
 					<p><button onClick={downloadStamp}>ダウンロード</button></p>
@@ -122,6 +124,7 @@ const App = function(props){
 						<StampSample theme="light" stamp={stamp} />
 						<StampSample theme="dark" stamp={stamp} />
 					</div>
+					<p><button onClick={() => setTime(time + 1)}>表示更新 (更新されない場合)</button></p>
 				</React.Fragment>}
 			</div>
 		</div>
