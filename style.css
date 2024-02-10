@@ -134,6 +134,7 @@ p{
 }
 .result{
 	width: calc(100% - 64px - 420px);
+	min-height: 840px;
 }
 
 
@@ -144,7 +145,7 @@ p{
 }
 
 
-.config-item{
+.config-item, .config-rule{
 	position: relative;
 	height: 36px;
 	clear: both;
@@ -163,10 +164,25 @@ p{
 .config-item *{
 	z-index: 110;
 }
+.config-item > *:first-child,
+.config-rule > *:first-child{
+	clear: both;
+}
+.config-item > *:last-child,
+.config-rule > *:last-child{
+	margin-bottom: 24px;
+}
+.config-rule{
+	text-align: center;
+	padding: 0 16px;
+}
+.config-rule button{
+	min-width: 80px;
+}
+
 h3{
 	margin: 2px 8px 2px 0;
 	float: left;
-	clear: both;
 	line-height: 36px;
 	position: relative;
 	padding: 0 4px;
@@ -183,9 +199,6 @@ h3{
 .source p span{
 	text-align: center;
 }
-.source p:last-child{
-	margin-bottom: 24px;
-}
 
 .main{
 	display: flex;
@@ -198,6 +211,7 @@ h3{
 	}
 	.source, .result{
 		width: calc(100% - 32px);
+		min-height: unset;
 	}
 }
 

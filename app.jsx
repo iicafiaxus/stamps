@@ -16,6 +16,8 @@ const App = function(props){
 	const [compressionLimit, setCompressionLimit] = React.useState(2.5);
 	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
+	const [showsConfig, setShowsConfig] = React.useState(false);
+
 	const handleChangeText = (ev) => {
 		setText(ev.target.value);
 	}
@@ -40,48 +42,58 @@ const App = function(props){
 					<h3>文字の色</h3>
 					<p><ColorSelector name="color" setColor={setColor} default="#0a0" /></p>
 				</div>
-				<div className="config-item">
-					<h3>フォント</h3>
-					<p><Selector name="font-family" setValue={setFontFamily} default="BIZ UDPMincho" options={[
-						{ value: "BIZ UDPMincho", title: "明朝" },
-						{ value: "BIZ UDPGothic", title: "ゴシック" }
-					]} /></p>
-				</div>
-				<div className="config-item">
-					<h3>背景</h3>
-					<p><Selector name="transparency" setValue={setTransparency} default="0" options={[
-						{ value: "0", title: "透明" },
-						{ value: "8", title: "半透明" },
-						{ value: "f", title: "不透明" }
-					]} /></p>
-					<p><ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" /></p>
-				</div>
-				<div className="config-item">
-					<h3>余白</h3>
-					<p><Selector name="padding-style" setValue={setPaddingStyle} default="none" options={[
-						{ value: "none", title: "なし" },
-						{ value: "normal", title: "四角" },
-						{ value: "round", title: "角丸" }
-					]} /></p>
-				</div>
-				<div className="config-item">
-					<h3>改行調整</h3>
-					<p><Selector name="compression-limit" setValue={setCompressionLimit} default={1.25} options={[
-						{ value: 1.0, title: "しない" },
-						{ value: 1.25, title: "弱" },
-						{ value: 2.0, title: "中" },
-						{ value: 3.0, title: "強" },
-						{ value: 10.0, title: "最強" },
-					]} /></p>
-				</div>
-				<div className="config-item">
-					<h3>詰め方</h3>
-					<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default="normal" options={[
-						{ value: "normal", title: "普通" },
-						{ value: "proportional", title: "比率固定" },
-						{ value: "hard", title: "激詰め(未実装)", enabled: false },
-					]} /></p>
-				</div>
+				{showsConfig || <React.Fragment>
+					<div className="config-rule">
+						<button onClick={() => setShowsConfig(true)}>詳細設定...</button>
+					</div>
+				</React.Fragment>}
+				{showsConfig && <React.Fragment>
+					<div className="config-item">
+						<h3>フォント</h3>
+						<p><Selector name="font-family" setValue={setFontFamily} default="BIZ UDPMincho" options={[
+							{ value: "BIZ UDPMincho", title: "明朝" },
+							{ value: "BIZ UDPGothic", title: "ゴシック" }
+						]} /></p>
+					</div>
+					<div className="config-item">
+						<h3>背景</h3>
+						<p><Selector name="transparency" setValue={setTransparency} default="0" options={[
+							{ value: "0", title: "透明" },
+							{ value: "8", title: "半透明" },
+							{ value: "f", title: "不透明" }
+						]} /></p>
+						<p><ColorSelector name="backgroundColor" setColor={setBackgroundColor} default="#000" /></p>
+					</div>
+					<div className="config-item">
+						<h3>余白</h3>
+						<p><Selector name="padding-style" setValue={setPaddingStyle} default="none" options={[
+							{ value: "none", title: "なし" },
+							{ value: "normal", title: "四角" },
+							{ value: "round", title: "角丸" }
+						]} /></p>
+					</div>
+					<div className="config-item">
+						<h3>改行調整</h3>
+						<p><Selector name="compression-limit" setValue={setCompressionLimit} default={1.25} options={[
+							{ value: 1.0, title: "しない" },
+							{ value: 1.25, title: "弱" },
+							{ value: 2.0, title: "中" },
+							{ value: 3.0, title: "強" },
+							{ value: 10.0, title: "最強" },
+						]} /></p>
+					</div>
+					<div className="config-item">
+						<h3>詰め方</h3>
+						<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default="normal" options={[
+							{ value: "normal", title: "普通" },
+							{ value: "proportional", title: "比率固定" },
+							{ value: "hard", title: "激詰め(未実装)", enabled: false },
+						]} /></p>
+					</div>
+					<div className="config-rule">
+						<button onClick={() => setShowsConfig(false)}>詳細設定を閉じる</button>
+					</div>
+				</React.Fragment>}
 			</div>
 			<div className="result">
 				<h3>結果</h3>
