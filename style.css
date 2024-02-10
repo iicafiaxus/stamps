@@ -40,16 +40,17 @@ p{
 	min-width: 40px;
 	line-height: 24px;
 	cursor: pointer;
+	user-select: none;
 }
 .checkbox-label-button:hover{
 	background: #ffff;
 }
 :checked + .checkbox-label-button{
-	border: 2px solid #0001;
+	border: 2px solid #0006;
 	background: #eeef;
 }
 .checkbox-label-button:hover{
-	border: 2px solid #0009;
+	border: 2px solid #000c;
 }
 .checkbox-label-button.disabled{
 	border: 2px solid #0001;
@@ -157,7 +158,7 @@ p{
 	height: 2px;
 	top: 17px;
 	left: 0;
-	background: #0001;
+	background: #0004;
 	content: "";
 	z-index: 90;
 }
@@ -178,6 +179,9 @@ p{
 }
 .config-rule button{
 	min-width: 80px;
+}
+.config-item p{
+	max-width: calc(100% - 100px);
 }
 
 h3{
@@ -205,7 +209,7 @@ h3{
 	flex-direction: row;
 	justify-content: space-evenly;
 }
-@media (max-width: 600px){
+@media (max-width: 680px){
 	.main{
 		flex-direction: column;
 	}
