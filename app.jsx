@@ -10,7 +10,7 @@ const App = function(props){
 	const [isDownloading, setIsDownloading] = React.useState(false);
 	const [color, setColor] = React.useState("#0a0");
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
-	const [transparency, setTransparency] = React.useState("0");
+	const [opacity, setOpacity] = React.useState("0");
 	const [paddingStyle, setPaddingStyle] = React.useState("none");
 	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
 	const [compressionLimit, setCompressionLimit] = React.useState(1.25);
@@ -61,7 +61,7 @@ const App = function(props){
 					</div>
 					<div className="config-item">
 						<h3>背景</h3>
-						<p><Selector name="transparency" setValue={setTransparency} default={transparency} options={[
+						<p><Selector name="opacity" setValue={setOpacity} default={opacity} options={[
 							{ value: "0", title: "透明" },
 							{ value: "8", title: "半透明" },
 							{ value: "f", title: "不透明" }
@@ -114,7 +114,7 @@ const App = function(props){
 					<Stamp text={text} fontFamily={fontFamily} policy={spacingPolicy} compressionLimit={compressionLimit}
 						kerningRatio={kerningRatio}
 						width={128} height={128} padding={paddingStyle != "none" ? 12 : 0} paddingStyle={paddingStyle}
-						color={color + "f"} backgroundColor={backgroundColor + transparency}
+						color={color + "f"} backgroundColor={backgroundColor + opacity}
 						downloading={isDownloading} setStamp={setStamp}
 						time={time} />
 				</p>
