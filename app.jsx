@@ -92,6 +92,7 @@ const App = function(props){
 						<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default={spacingPolicy} options={[
 							{ value: "proportional", title: "しない" },
 							{ value: "normal", title: "普通" },
+							{ value: "fit-width", title: "最強" },
 						]} /></p>
 					</div>
 					<div className="config-item">

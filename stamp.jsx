@@ -91,8 +91,9 @@ const Stamp = function(props){
 		if(!letters?.length) return;
 		const heightRatio = lineHeight / canvasHeight;
 		const naturalWidth = calcWidth(letters);
+		const maxWidthRatio = policy == "fit-width" ? 10.0 : heightRatio * maxProportion;
 		const widthRatio = proportion ? heightRatio * proportion :
-			Math.min(heightRatio * maxProportion, innerWidth / naturalWidth);
+			Math.min(maxWidthRatio, innerWidth / naturalWidth);
 		const left = padding + (innerWidth - naturalWidth * widthRatio) / 2;
 		for(let i = 0; i < letters.length; i ++){
 			const naturalLetterWidth = calcWidth(letters[i]);
