@@ -36,8 +36,10 @@ const App = function(props){
 		<h1>激詰め組版</h1>
 		<div className="main">
 			<div className="source">
-				<h3>組版する文字列</h3>
-				<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
+				<div className="config-item">
+					<h3>組版する文字列</h3>
+					<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
+				</div>
 				<div className="config-item">
 					<h3>文字の色</h3>
 					<p><ColorSelector name="color" setColor={setColor} default="#0a0" /></p>
