@@ -3,6 +3,7 @@ const Stamp = function(props){
 	const fontFamily = props.fontFamily || "BIZ UDPMincho";
 	const policy = props.policy || "normal";
 	const maxProportion = +props.compressionLimit || 2.5;
+	const kerningRatio = +props.kerningRatio || 0.0;
 	const canvasWidth = +props.width || 128;
 	const canvasHeight = +props.height || 128;
 	const padding = +props.padding || 0;
@@ -46,8 +47,10 @@ const Stamp = function(props){
 		ctx.scale(1 / widthRatio, 1 / heightRatio);
 	}
 	const calcWidth = (letters) => {
+		if(!letters.length) return 0;
+		const kerning = canvasHeight * kerningRatio * (letters.length - 1);
 		const metrics = ctx.measureText(letters);
-		return metrics.width;
+		return metrics.width - kerning;
 	}
 	const calcHeight = (letters) => { // 幅を合わせたときの自然な高さ
 		if(!letters.length) return 0;
