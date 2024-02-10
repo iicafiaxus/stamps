@@ -6,7 +6,7 @@
 
 const App = function(props){
 	let textareaRef = React.useRef(null);
-	const [text, setText] = React.useState("");
+	const [text, setText] = React.useState("激詰め\n組版");
 	const [isDownloading, setIsDownloading] = React.useState(false);
 	const [color, setColor] = React.useState("#0a0");
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
@@ -40,7 +40,7 @@ const App = function(props){
 			<div className="source">
 				<div className="config-item">
 					<h3>組版する文字列</h3>
-					<p><textarea onChange={handleChangeText} ref={textareaRef} /></p>
+					<p><textarea onChange={handleChangeText} ref={textareaRef} value={text} /></p>
 				</div>
 				<div className="config-item">
 					<h3>文字の色</h3>
