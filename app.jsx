@@ -62,7 +62,7 @@ const App = function(props){
 					<div className="config-item">
 						<h3>背景</h3>
 						<p><Selector name="opacity" setValue={setOpacity} default={opacity} options={[
-							{ value: "0", title: "透明" },
+							{ value: "0", title: "色なし" },
 							{ value: "8", title: "半透明" },
 							{ value: "f", title: "不透明" }
 						]} /></p>
