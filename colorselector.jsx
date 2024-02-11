@@ -3,6 +3,7 @@
 const ColorSelector = function(props){
 	const name = props.name || "color";
 	const defaultColor = props.default || "#0a0";
+	const enabled = props.enabled ?? true;
 	const [colorCode, setColorCode] = React.useState(defaultColor);
 	const colors = [
 		{ name: "赤", code: "#f00" },
@@ -23,8 +24,8 @@ const ColorSelector = function(props){
 		{colors.map(color => 
 			<InlineCheckBox name={name} key={color.code}
 			onChange={() => setColorCode(color.code) + props.setColor(color.code)}
-			checked={colorCode == color.code}>
-				<span style={{color: color.code}}>■</span> {color.name}
+			checked={colorCode == color.code} enabled={enabled}>
+				<span style={{ color: enabled ? color.code : "inherit" }}>■</span> {color.name}
 			</InlineCheckBox>
 		)}
 	</React.Fragment>

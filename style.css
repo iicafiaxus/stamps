@@ -55,6 +55,7 @@ p{
 .checkbox-label-button.disabled{
 	border: 2px solid #0001;
 	color: #0006;
+	cursor: default;
 }
 .sample{
 	font-size: 16px;
