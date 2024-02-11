@@ -42,9 +42,10 @@ const Stamp = function(props){
 	const putLetter = (letter, x, y, width, height) => {
 		const naturalWidth = calcWidth(letter);
 		const widthRatio = width / naturalWidth, heightRatio = height / canvasHeight;
+		ctx.save();
 		ctx.scale(widthRatio, heightRatio);
 		ctx.fillText(letter, x / widthRatio, y / heightRatio);
-		ctx.scale(1 / widthRatio, 1 / heightRatio);
+		ctx.restore();
 	}
 	const calcWidth = (letters) => {
 		if(!letters.length) return 0;
