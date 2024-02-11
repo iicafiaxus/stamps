@@ -25,7 +25,7 @@ const ColorSelector = function(props){
 			<InlineCheckBox name={name} key={color.code}
 			onChange={() => setColorCode(color.code) + props.setColor(color.code)}
 			checked={colorCode == color.code} enabled={enabled}>
-				<span style={{ color: enabled ? color.code : "inherit" }}>■</span> {color.name}
+				<span style={{ color: enabled ? color.code : "#ccc" }}>■</span> {color.name}
 			</InlineCheckBox>
 		)}
 	</React.Fragment>
