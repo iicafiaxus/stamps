@@ -63,8 +63,8 @@ const App = function(props){
 						<h3>背景</h3>
 						<p><Selector name="opacity" setValue={setOpacity} default={opacity} options={[
 							{ value: "0", title: "色なし" },
-							{ value: "8", title: "半透明" },
-							{ value: "f", title: "不透明" }
+							{ value: "8", title: "うす塗り" },
+							{ value: "f", title: "ベタ塗り" }
 						]} /></p>
 						<p>
 							<ColorSelector name="backgroundColor" setColor={setBackgroundColor} default={backgroundColor}
@@ -75,7 +75,7 @@ const App = function(props){
 					<div className="config-item">
 						<h3>余白</h3>
 						<p><Selector name="padding-style" setValue={setPaddingStyle} default={paddingStyle} options={[
-							{ value: "none", title: "なし" },
+							{ value: "none", title: "余白なし" },
 							{ value: "normal", title: "四角" },
 							{ value: "round", title: "角丸" }
 						]} /></p>
