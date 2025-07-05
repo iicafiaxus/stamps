@@ -58,6 +58,9 @@ p{
 	color: #0006;
 	cursor: default;
 }
+.checkbox-label-button.smashed{
+	line-height: 0;
+}
 .sample{
 	font-size: 16px;
 	font-family: "Noto Sans JP";

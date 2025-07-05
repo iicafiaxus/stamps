@@ -1,5 +1,6 @@
 "REQUIRE stamp.jsx";
 "REQUIRE colorselector.jsx";
+"REQUIRE alignmentselector.jsx";
 "REQUIRE stampsample.jsx";
 "REQUIRE selector.jsx";
 "REQUIRE checker.jsx";
@@ -12,8 +13,7 @@ const App = function(props){
 	const [backgroundColor, setBackgroundColor] = React.useState("#000");
 	const [opacity, setOpacity] = React.useState("0");
 	const [paddingStyle, setPaddingStyle] = React.useState("none");
-	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
-	const [compressionLimit, setCompressionLimit] = React.useState(1.25);
+	const [alignment, setAlignment] = React.useState("normal,1.25");
 	const [kerningRatio, setKerningRatio] = React.useState(0.05);
 	const [font, setFont] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
@@ -82,23 +82,12 @@ const App = function(props){
 						]} /></p>
 					</div>
 					<div className="config-item">
-						<h3>縦幅調整</h3>
-						<p><Selector name="compression-limit" setValue={setCompressionLimit} default={compressionLimit}
-							options={[
-							{ value: 10.0, title: "均等" },
-							{ value: 3.0, title: "弱" },
-							{ value: 2.0, title: "中" },
-							{ value: 1.25, title: "強" },
-							{ value: 1.0, title: "フリー" },
-						]} /></p>
-					</div>
-					<div className="config-item">
-						<h3>横幅調整</h3>
-						<p><Selector name="spacing-policy" setValue={setSpacingPolicy} default={spacingPolicy} options={[
-							{ value: "proportional", title: "しない" },
-							{ value: "normal", title: "普通" },
-							{ value: "fit-width", title: "最強" },
-						]} /></p>
+						<h3>縦幅・横幅調整</h3>
+						<p><AlignmentSelector name="alignment" setAlignment={setAlignment} default={alignment}
+							compressionLimits={[10.0, 3.0, 2.0, 1.25, 1.0]}
+							spacingPolicies={["proportional", "normal", "fit-width"]}
+							sampleText={text}
+						/></p>
 					</div>
 					<div className="config-item">
 						<h3>詰め方</h3>
@@ -116,7 +105,7 @@ const App = function(props){
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} font={font} policy={spacingPolicy} compressionLimit={compressionLimit}
+					<Stamp text={text} font={font} alignment={alignment}
 						kerningRatio={kerningRatio}
 						width={128} height={128} padding={paddingStyle != "none" ? 12 : 0} paddingStyle={paddingStyle}
 						color={color + "f"} backgroundColor={backgroundColor + opacity}

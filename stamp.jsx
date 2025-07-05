@@ -3,8 +3,9 @@ const Stamp = function(props){
 	const fontParams = (props.font || "").split(",").map(x => x.trim());
 	const fontFamily = fontParams[0] || "Biz UDPMincho";
 	const fontWeight = fontParams[1] || "bold";
-	const policy = props.policy || "normal";
-	const maxProportion = +props.compressionLimit || 2.5;
+	const alignmentParams = (props.alignment || "normal,2.5").split(",").map(x => x.trim());
+	const policy = alignmentParams[0] || "normal";
+	const maxProportion = +alignmentParams[1] || 2.5;
 	const kerningRatio = +props.kerningRatio || 0.0;
 	const canvasWidth = +props.width || 128;
 	const canvasHeight = +props.height || 128;
