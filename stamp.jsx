@@ -1,6 +1,8 @@
 const Stamp = function(props){
 	const lines = props.text?.split(/\r?\n/g).filter(x => x.length) || [];
-	const fontFamily = props.fontFamily || "BIZ UDPMincho";
+	const fontParams = (props.font || "").split(",").map(x => x.trim());
+	const fontFamily = fontParams[0] || "Biz UDPMincho";
+	const fontWeight = fontParams[1] || "bold";
 	const policy = props.policy || "normal";
 	const maxProportion = +props.compressionLimit || 2.5;
 	const kerningRatio = +props.kerningRatio || 0.0;
@@ -37,7 +39,7 @@ const Stamp = function(props){
 			ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 		}
 		ctx.fillStyle = props.color || "#000f";
-		ctx.font = ["bold", canvasHeight + "px", fontFamily].join(" ");
+		ctx.font = [fontWeight, canvasHeight + "px", fontFamily].join(" ");
 	}
 	const putLetter = (letter, x, y, width, height) => {
 		const naturalWidth = calcWidth(letter);

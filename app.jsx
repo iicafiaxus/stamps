@@ -15,7 +15,7 @@ const App = function(props){
 	const [spacingPolicy, setSpacingPolicy] = React.useState("normal");
 	const [compressionLimit, setCompressionLimit] = React.useState(1.25);
 	const [kerningRatio, setKerningRatio] = React.useState(0.05);
-	const [fontFamily, setFontFamily] = React.useState("BIZ UDPMincho");
+	const [font, setFont] = React.useState("BIZ UDPMincho");
 	const [stamp, setStamp] = React.useState(<img />);
 	const [showsConfig, setShowsConfig] = React.useState(false);
 	const [time, setTime] = React.useState(0);
@@ -54,9 +54,10 @@ const App = function(props){
 				{showsConfig && <React.Fragment>
 					<div className="config-item">
 						<h3>フォント</h3>
-						<p><Selector name="font-family" setValue={setFontFamily} default={fontFamily} options={[
+						<p><Selector name="font-family" setValue={setFont} default={font} options={[
 							{ value: "BIZ UDPMincho", title: "明朝" },
-							{ value: "BIZ UDPGothic", title: "ゴシック" }
+							{ value: "BIZ UDPGothic", title: "ゴシック" },
+							{ value: "Mochiy Pop P One, 400", title: "ポップ" }
 						]} /></p>
 					</div>
 					<div className="config-item">
@@ -115,7 +116,7 @@ const App = function(props){
 			<div className="result">
 				<h3>結果</h3>
 				<p>
-					<Stamp text={text} fontFamily={fontFamily} policy={spacingPolicy} compressionLimit={compressionLimit}
+					<Stamp text={text} font={font} policy={spacingPolicy} compressionLimit={compressionLimit}
 						kerningRatio={kerningRatio}
 						width={128} height={128} padding={paddingStyle != "none" ? 12 : 0} paddingStyle={paddingStyle}
 						color={color + "f"} backgroundColor={backgroundColor + opacity}
