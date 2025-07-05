@@ -82,11 +82,11 @@ const App = function(props){
 						]} /></p>
 					</div>
 					<div className="config-item">
-						<h3>縦幅・横幅調整</h3>
+						<h3>文字サイズ調整</h3>
 						<p><AlignmentSelector name="alignment" setAlignment={setAlignment} default={alignment}
 							compressionLimits={[10.0, 3.0, 2.0, 1.25, 1.0]}
 							spacingPolicies={["proportional", "normal", "fit-width"]}
-							sampleText={text}
+							sampleText={text.replaceAll(/[^\n]/g, "□")}
 						/></p>
 					</div>
 					<div className="config-item">

@@ -14,7 +14,8 @@ const AlignmentSelector = function(props){
 					onChange={() => setAlignment(key) + props.setAlignment(key)}
 					checked={alignment == key} smashed>
 					<Stamp text={text} alignment={key}
-						color={"#f00f"} backgroundColor={"#fff0"}
+						color={"#333f"} backgroundColor={"#fff0"}
+						kerningRatio={0.1}
 						width={40} height={40} />
 				</InlineCheckBox>
 			})
