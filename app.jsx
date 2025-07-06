@@ -36,6 +36,7 @@ const App = function(props){
 	}, [text])
 	return <div className="app">
 		<h1>激詰め組版</h1>
+		<p>激詰めスタンプを作り，Slackなどで使いましょう。</p>
 		<div className="main">
 			<div className="source">
 				<div className="config-item">
