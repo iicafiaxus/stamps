@@ -1,5 +1,9 @@
 const Stamp = function(props){
-	const lines = props.text?.split(/\r?\n/g).filter(x => x.length) || [];
+	const lines = (text => {
+		const segmenter = new Intl.Segmenter();
+		const toGraphemes = text => Array.from(segmenter.segment(text)).map(s => s.segment);
+		return text?.split(/\r?\n/g).filter(x => x.length).map(toGraphemes) || [];
+	})(props.text);
 	const fontParams = (props.font || "").split(",").map(x => x.trim());
 	const fontFamily = fontParams[0] || "Biz UDPMincho";
 	const fontWeight = fontParams[1] || "bold";
@@ -43,7 +47,7 @@ const Stamp = function(props){
 		ctx.font = [fontWeight, canvasHeight + "px", fontFamily].join(" ");
 	}
 	const putLetter = (letter, x, y, width, height) => {
-		const naturalWidth = calcWidth(letter);
+		const naturalWidth = calcWidth([letter]);
 		const widthRatio = width / naturalWidth, heightRatio = height / canvasHeight;
 		ctx.save();
 		ctx.scale(widthRatio, heightRatio);
@@ -53,7 +57,7 @@ const Stamp = function(props){
 	const calcWidth = (letters) => {
 		if(!letters.length) return 0;
 		const kerning = canvasHeight * kerningRatio * (letters.length - 1);
-		const metrics = ctx.measureText(letters);
+		const metrics = ctx.measureText(letters.join(""));
 		return metrics.width - kerning;
 	}
 	const calcHeight = (letters) => { // 幅を合わせたときの自然な高さ
@@ -100,7 +104,7 @@ const Stamp = function(props){
 			Math.min(maxWidthRatio, innerWidth / naturalWidth);
 		const left = padding + (innerWidth - naturalWidth * widthRatio) / 2;
 		for(let i = 0; i < letters.length; i ++){
-			const naturalLetterWidth = calcWidth(letters[i]);
+			const naturalLetterWidth = calcWidth([letters[i]]);
 			const naturalLetterLeft = calcWidth(letters.slice(0, i + 1)) - naturalLetterWidth;
 			const modifiedLetterLeft = naturalLetterLeft * widthRatio;
 			const modifiedLetterWidth = naturalLetterWidth * widthRatio;
