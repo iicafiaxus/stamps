@@ -116,7 +116,7 @@ const Stamp = function(props){
 		canvasRef.current.toBlob( blob => {
 			const url = URL.createObjectURL(blob);
 			const a = document.createElement("a");
-			a.download = lines.join("_");
+			a.download = lines.map(l => l.join("")).join("_");
 			a.href = url;
 			a.click();
 			URL.revokeObjectURL(url);
